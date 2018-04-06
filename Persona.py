@@ -3,7 +3,7 @@ import Registro
 class Persona (object):
     Nombre = None
     Apellido = None
-    FechanNac = None
+    FechaNac = None
 
     def __init__(self, Nombre, Apellido, FechaNac):
         self.ListaRegistros = []
@@ -11,6 +11,20 @@ class Persona (object):
         self.Apellido = Apellido
         self.FechaNac = FechaNac
 
-    def agregarRegistro(self, Altura, Peso, FechaHoy):
-        r = Registro(Altura, Peso, FechaHoy)
-        self.ListaRegistros.append(r)
+    def agregarMedia(self, altura, peso, fecha):
+       unaMedida= Medida ()
+       unaMedida.peso = peso
+       unaMedida.altura = altura
+       unaMedia.fecha = fecha
+       self.listaMedidas.append (unaMedida)
+
+    def promedioAlt (self, año) :
+        s = 0
+        c = 0
+
+        for item in self.listaMedidas :
+            if item.fecha.year == año:
+                s + = item.año/7
+                c + = 1
+
+        return s/c
