@@ -5,3 +5,4 @@ class Album(object):
         self.Lista_Canciones=[]
         self.Titulo=Tit
 
+s
