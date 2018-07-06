@@ -15,3 +15,4 @@ class Registro (object):
                 return float(sum(ListaRegistros.Altura)) / max(len(ListaRegistros.Altura), 1)
                 return float(sum(ListaRegistros.Peso)) / max(len(ListaRegistros.Peso), 1)
 
+º
