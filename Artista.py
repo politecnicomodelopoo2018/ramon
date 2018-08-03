@@ -5,24 +5,27 @@ class Artista(object):
     Nombre = None
     Conciertos = None
 
-    def InsertArt(self, idArtista, Nombre, Conciertos):
+    def __init__(self,n,c):
+        self.Nombre = n
+        self.Conciertos= c
 
-        DB.run("insert into Artista values (null,'" + self.Nombre + "','" + self.Conciertos + "')")
+    def InsertArt(self):
 
-
+        DB.run("insert into Artista values (null,'%s','%s');" % (self.Nombre, self.Conciertos))
 
     def LeerArt(self):
-        a = DB.connect("select * from Artista")
+        cursor = DB.run("select * from Artista;")
         lista = []
-        for b in a:
-            Art = Artista(b['idArtista'], b['Nombre'], b['Conciertos'])
+        for b in cursor:
+            Art = Artista(b['Nombre'], b['Conciertos'])
 
-        lista.append[Art]
+        lista.append(Art)
 
         return lista
 
+
     def BorrarArt(self):
-        a = DB.connect("delete from Artista where idArtista = %s" % (self.idArtista))
+        DB.run("delete from Artista where idArtista = %s;" % (self.idArtista))
 
     def ActualizarArt(self):
-        a = DB.connect("update Artista set Nombre = '%s' , Conciertos = '%s' ; " % (self.Nombre,self.Conciertos))
+        DB.run("update Artista set Nombre = '%s' , Conciertos = '%s'; " % (self.Nombre,self.Conciertos))

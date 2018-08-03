@@ -5,8 +5,8 @@ class DB ():
     def run (query):
         db = pymysql.connect (host='127.0.0.1',
                               user='root',
-                              passwrd='alumno',
-                              db='ur mom gae',
+                              passwd='alumno',
+                              db='mydb',
                               charset='utf8',
                               autocommit=True)
 
