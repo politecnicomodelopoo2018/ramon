@@ -7,17 +7,17 @@ class Genero(object):
     def __init__(self,ng):
         self.Nombre_Genero = ng
 
-    def InsertGen(self):
+    def InsertGen(self,ng):
 
-        DB.run("insert into Genero values (null,'%s');" % (self.Nombre_Genero))
+        DB.run("insert into Genero values (null,'%s');" % (ng))
 
     def LeerGen(self):
         cursor = DB.run("select * from Genero;")
         lista = []
         for b in cursor:
-            Gen = Genero(b['idGenero'], b['Nombre_Genero'])
+            Gen = Genero( b['Nombre_Genero'])
 
-        lista.append[Gen]
+            lista.append(Gen)
 
         return lista
 

@@ -9,17 +9,18 @@ class Artista(object):
         self.Nombre = n
         self.Conciertos= c
 
-    def InsertArt(self):
+    def InsertArt(self,n,c):
 
-        DB.run("insert into Artista values (null,'%s','%s');" % (self.Nombre, self.Conciertos))
+        DB.run("insert into Artista values (null,'%s','%s');" % (n,c))
 
     def LeerArt(self):
         cursor = DB.run("select * from Artista;")
         lista = []
         for b in cursor:
+
             Art = Artista(b['Nombre'], b['Conciertos'])
 
-        lista.append(Art)
+            lista.append(Art)
 
         return lista
 

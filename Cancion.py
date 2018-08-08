@@ -16,17 +16,17 @@ class Cancion(object):
                "end $$"
                "delimiter;")
 
-    def InsertCan(self):
+    def InsertCan(self,nc):
 
-        DB.run("insert into Cancion values (null,'%s');" % (self.Nombre_Cancion))
+        DB.run("insert into Cancion values (null,'%s');" % (nc))
 
     def LeerCan(self):
         cursor = DB.run("select * from Cancion;")
         lista = []
         for b in cursor:
-            Can = Cancion(b['idCancion'], b['Nombre_Cancion'])
+            Can = Cancion(b['Nombre_Cancion'])
 
-        lista.append[Can]
+            lista.append(Can)
 
         return lista
 

@@ -19,17 +19,17 @@ class Album(object):
                "end $$"
                "delimiter;")
 
-    def InsertAl(self):
+    def InsertAl(self,n,f):
 
-        DB.run("insert into Album values (null,'%s','%s');" % (self.Nombre_Album, self.Fecha_Lanzamiento))
+        DB.run("insert into Album values (null,'%s','%s');" % (n, f))
 
     def LeerAl(self):
         cursor = DB.run("select * from Album;")
         lista = []
         for b in cursor:
-            Al = Album(b['idAlbum'], b['Nombre_Album'], b['Fecha_Lanzamiento'])
+            Al = Album(b['Nombre_Album'], b['Fecha_Lanzamiento'])
 
-        lista.append[Al]
+            lista.append(Al)
 
         return lista
 
