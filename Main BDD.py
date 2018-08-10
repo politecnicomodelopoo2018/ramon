@@ -2,6 +2,7 @@ from Album import Album
 from Artista import Artista
 from Cancion import Cancion
 from Genero import Genero
+import os
 
 
 
@@ -24,46 +25,88 @@ menu['15']="Eliminar Genero"
 menu['16']="Modificar Genero"
 menu['17']="Exit"
 
+a = 0
 
+while a != '17':
 
-a=input("Porfavor Seleccione Numero:")
+    a = input("Porfavor Seleccione Numero:")
 
-if a =='1':
-    p = Artista('NULL','NULL')
-    banda = input("Ingrese Artista: ")
-    concierto = input("Ingresar Concierto: ")
-    p.InsertArt(banda,concierto)
-elif a =='2':
-    p = Artista('NULL','NULL')
-    z = p.LeerArt()
-    for a in z:
-        print(a.Nombre, " - ", a.Conciertos)
-elif a =='5':
-    p = Album("NULL","NULL")
-    nom_al = input("Ingrese Nombre Album: ")
-    fech_lan = input("Ingresar Fecha de Lanazamiento: ")
-    p.InsertAl(nom_al,fech_lan)
-elif a == '6':
-    p = Album('NULL','NULL')
-    z = p.LeerAl()
-    for a in z:
-        print(a.Nombre_Album, " - ", a.Fecha_Lanzamiento)
-elif a =='9':
-    p = Cancion("NULL")
-    nom_can = input("Ingrese Nombre Cancion: ")
-    p.InsertCan(nom_can)
-elif a == '10':
-    p = Cancion('NULL')
-    z = p.LeerCan()
-    for a in z:
-        print(a.Nombre_Cancion)
-elif a =='13':
-    p = Genero("NULL")
-    nom_gen = input("Ingrese Genero: ")
-    p.InsertGen(nom_gen)
-elif a == '14':
-    p = Genero('NULL')
-    z = p.LeerGen()
-    for a in z:
-        print(a.Nombre_Genero)
-
+    if a =='1':
+        p = Artista('NULL','NULL','NULL')
+        banda = input("Ingrese Artista: ")
+        concierto = input("Ingresar Concierto: ")
+        p.InsertArt(banda,concierto)
+    elif a =='2':
+        p = Artista('NULL','NULL','NULL')
+        z = p.LeerArt()
+        for a in z:
+            print(a.idArtista, " - ", a.Nombre, " - ", a.Conciertos)
+    elif a =='3':
+        p = Artista('NULL','NULL','NULL')
+        id_borrar = input ("Ingrese ID a Borrar: ")
+        p.BorrarArt(id_borrar)
+    elif a =='4':
+        p = Artista('NULL','NULL','NULL')
+        id_update = input("Ingrese ID a Actualizar: ")
+        nombre_nuevo = input("Ingrese Nombre a Actualizar: ")
+        concierto_nuevo = input("Ingrese Concierto a Actualizar: ")
+        p.ActualizarArt(nombre_nuevo,concierto_nuevo,id_update)
+    elif a =='5':
+        p = Album('NULL','NULL','NULL')
+        nom_al = input("Ingrese Nombre Album: ")
+        fech_lan = input("Ingresar Fecha de Lanazamiento: ")
+        p.InsertAl(nom_al,fech_lan)
+    elif a == '6':
+        p = Album('NULL','NULL','NULL')
+        z = p.LeerAl()
+        for a in z:
+            print(a.Nombre_Album, " - ", a.Fecha_Lanzamiento)
+    elif a =='7':
+        p = Album('NULL','NULL','NULL')
+        id_borrar = input ("Ingrese ID a Borrar: ")
+        p.BorrarAl(id_borrar)
+    elif a =='8':
+        p = Album('NULL','NULL','NULL')
+        id_update = input("Ingrese ID a Actualizar: ")
+        nombre_nuevo = input("Ingrese Nombre a Actualizar: ")
+        fecha_nuevo = input("Ingrese Fecha a Actualizar: ")
+        p.ActualizarAl(nombre_nuevo,fecha_nuevo,id_update)
+    elif a =='9':
+        p = Cancion('NULL','NULL','NULL','NULL')
+        id_Art = input("Ingrese ID del Artista de la Cancion: ")
+        id_Al = input("Ingrese ID del Album de la Cancion: ")
+        nom_can = input("Ingrese Nombre Cancion: ")
+        p.InsertCan(nom_can,id_Art,id_Al)
+    elif a == '10':
+        p = Cancion('NULL','NULL','NULL','NULL')
+        z = p.LeerCan()
+        for a in z:
+            print(a.Nombre_Cancion)
+    elif a =='11':
+        p = Cancion('NULL','NULL','NULL','NULL')
+        id_borrar = input ("Ingrese ID a Borrar: ")
+        p.BorrarCan(id_borrar)
+    elif a =='12':
+        p = Cancion('NULL','NULL','NULL','NULL')
+        id_update = input("Ingrese ID a Actualizar: ")
+        nombre_nuevo = input("Ingrese Cancion a Actualizar: ")
+        p.ActualizarCan(nombre_nuevo,id_update)
+    elif a =='13':
+        p = Genero('NULL','NULL','NULL')
+        id_alb = input("Ingrese ID del Album: ")
+        nom_gen = input("Ingrese Genero: ")
+        p.InsertGen(nom_gen,id_alb)
+    elif a == '14':
+        p = Genero('NULL','NULL')
+        z = p.LeerGen()
+        for a in z:
+            print(a.Nombre_Genero)
+    elif a =='15':
+        p = Genero('NULL','NULL')
+        id_borrar = input ("Ingrese ID a Borrar: ")
+        p.BorrarGen(id_borrar)
+    elif a =='16':
+        p = Genero('NULL','NULL')
+        id_update = input("Ingrese ID a Actualizar: ")
+        nombre_nuevo = input("Ingrese Genero a Actualizar: ")
+        p.ActualizarGen(nombre_nuevo,id_update)

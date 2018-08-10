@@ -5,19 +5,10 @@ class Album(object):
     Nombre_Album = None
     Fecha_Lanzamiento = None
 
-    def __init__(self,n,f):
+    def __init__(self,id,n,f):
+        self.idAlbum = id
         self.Nombre_Album = n
         self.Fecha_Lanzamiento = f
-
-    def TriggerAl (self):
-        DB.run("drop trigger if exists BorrarAlbum;"
-               "delimiter $$"
-               "create trigger BorrarAlbum before delete on Album for each row"
-               "begin"
-               "delete from Genero;"
-               "delete from Cancion;"
-               "end $$"
-               "delimiter;")
 
     def InsertAl(self,n,f):
 
@@ -27,14 +18,14 @@ class Album(object):
         cursor = DB.run("select * from Album;")
         lista = []
         for b in cursor:
-            Al = Album(b['Nombre_Album'], b['Fecha_Lanzamiento'])
+            Al = Album(b['idAlbum'],b['Nombre_Album'], b['Fecha_Lanzamiento'])
 
             lista.append(Al)
 
         return lista
 
-    def BorrarAl(self):
-        DB.run("delete from Album where idAlbum = %s;" % (self.idAlbum))
+    def BorrarAl(self,id):
+        DB.run("delete from Album where idAlbum = %s;" % (id))
 
     def ActualizarAl(self):
         DB.run("update Album set Nombre_Album = '%s' , Fecha_Lanzamiento = '%s'; " % (self.Nombre_Album,self.Fecha_Lanzamiento))

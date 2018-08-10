@@ -5,7 +5,8 @@ class Artista(object):
     Nombre = None
     Conciertos = None
 
-    def __init__(self,n,c):
+    def __init__(self,id,n,c):
+        self.idArtista = id
         self.Nombre = n
         self.Conciertos= c
 
@@ -18,15 +19,15 @@ class Artista(object):
         lista = []
         for b in cursor:
 
-            Art = Artista(b['Nombre'], b['Conciertos'])
+            Art = Artista(b['idArtista'],b['Nombre'], b['Conciertos'])
 
             lista.append(Art)
 
         return lista
 
 
-    def BorrarArt(self):
-        DB.run("delete from Artista where idArtista = %s;" % (self.idArtista))
+    def BorrarArt(self,id):
+        DB.run("delete from Artista where idArtista = %s;" % (id))
 
-    def ActualizarArt(self):
-        DB.run("update Artista set Nombre = '%s' , Conciertos = '%s'; " % (self.Nombre,self.Conciertos))
+    def ActualizarArt(self,n,c,id):
+        DB.run("update Artista set Nombre = '%s' , Conciertos = '%s' where idArtista = %s; " % (n,c,id))
