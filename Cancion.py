@@ -25,7 +25,7 @@ class Cancion(object):
         return lista
 
     def BorrarCan(self,id):
-        DB.run("delete from Cancion where idCancion = %s;" % (id))
+        DB.run("delete from Cancion where idCancion = '%s';" % (id))
 
-    def ActualizarCan(self):
-        DB.run("update Cancion set Nombre_Cancion = '%s'; " % (self.Nombre_Cancion))
+    def ActualizarCan(self,nc,id):
+        DB.run("update Cancion set Nombre_Cancion = '%s' where idCancion = '%s'; " % (nc,id))

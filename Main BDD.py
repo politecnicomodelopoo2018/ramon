@@ -93,7 +93,7 @@ while a != '18':
         p = Album('NULL','NULL','NULL')
         z = p.LeerAl()
         for a in z:
-            print(a.Nombre_Album, " - ", a.Fecha_Lanzamiento)
+            print(a.idAlbum, ' - ',a.Nombre_Album, " - ", a.Fecha_Lanzamiento)
     elif a =='7':
         p = Album('NULL','NULL','NULL')
         id_borrar = input ("Ingrese ID a Borrar: ")
@@ -101,8 +101,8 @@ while a != '18':
     elif a =='8':
         p = Album('NULL','NULL','NULL')
         id_update = input("Ingrese ID a Actualizar: ")
-        nombre_nuevo = input("Ingrese Nombre a Actualizar: ")
-        fecha_nuevo = input("Ingrese Fecha a Actualizar: ")
+        nombre_nuevo = input("Ingrese nuevo Nombre: ")
+        fecha_nuevo = input("Ingrese nuevo Fecha: ")
         p.ActualizarAl(nombre_nuevo,fecha_nuevo,id_update)
     elif a =='9':
         p = Cancion('NULL','NULL','NULL','NULL')
@@ -135,9 +135,9 @@ while a != '18':
         id_gen = input("Ingrese ID del Genero: ")
         DB.run("insert into Album_has_Genero values ('%s','%s')" % (id_album, id_gen))
     elif a == '15':
-        p = Genero('NULL','NULL')
+
         id_alberto = input("Ingrese ID Album para Leer: ")
-        z = p.LeerGen(id_alberto)
+        z = Genero.LeerGen(id_alberto)
         for a in z:
             print(a.idGenero, " - ",a.Nombre_Genero)
     elif a =='16':

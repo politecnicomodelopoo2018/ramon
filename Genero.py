@@ -9,11 +9,13 @@ class Genero(object):
         self.Nombre_Genero = ng
 
 
-    def InsertGen(self,ng):
+
+    def InsertGen(ng):
 
         DB.run("insert into Genero values (NULL,'%s');" % (ng))
 
-    def LeerGen(self,id):
+    @staticmethod
+    def LeerGen(id):
         cursor = DB.run("select * from Genero join Album_has_Genero on Album_has_Genero.Genero_idGenero = Genero.idGenero where Album_idAlbum = '%s';" % (id))
         lista = []
         for b in cursor:

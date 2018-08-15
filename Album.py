@@ -25,7 +25,7 @@ class Album(object):
         return lista
 
     def BorrarAl(self,id):
-        DB.run("delete from Album where idAlbum = %s;" % (id))
+        DB.run("delete from Album where idAlbum = '%s';" % (id))
 
-    def ActualizarAl(self):
-        DB.run("update Album set Nombre_Album = '%s' , Fecha_Lanzamiento = '%s'; " % (self.Nombre_Album,self.Fecha_Lanzamiento))
+    def ActualizarAl(self,n,f,id):
+        DB.run("update Album set Nombre_Album = '%s' , Fecha_Lanzamiento = '%s' where idAlbum = '%s'; " % (n,f,id))
