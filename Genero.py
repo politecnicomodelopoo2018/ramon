@@ -3,19 +3,18 @@ from PyMySQL import DB
 class Genero(object):
     idGenero = None
     Nombre_Genero = None
-    idGenero_Album = None
 
-    def __init__(self,id,ng,id_alb):
+    def __init__(self,id,ng):
         self.idGenero = id
         self.Nombre_Genero = ng
-        self.idGenero_Album = id_alb
 
-    def InsertGen(self,ng,id_alb):
 
-        DB.run("insert into Genero values (null,'%s','%s');" % (ng,id_alb))
+    def InsertGen(self,ng):
 
-    def LeerGen(self):
-        cursor = DB.run("select * from Genero;")
+        DB.run("insert into Genero values (NULL,'%s');" % (ng))
+
+    def LeerGen(self,id):
+        cursor = DB.run("select * from Genero join Album_has_Genero on Album_has_Genero.Genero_idGenero = Genero.idGenero where Album_idAlbum = '%s';" % (id))
         lista = []
         for b in cursor:
             Gen = Genero(b['idGenero'], b['Nombre_Genero'])
@@ -27,5 +26,5 @@ class Genero(object):
     def BorrarGen(self,id):
         DB.run("delete from Genero where idGenero = %s;" % (id))
 
-    def ActualizarGen(self):
-        DB.run("update Genero set Nombre_Genero = '%s'; " % (self.Nombre_Genero))
+    def ActualizarGen(self,ng,id):
+        DB.run("update Genero set Nombre_Genero = '%s' where idGenero = '%s'; " % (ng,id))

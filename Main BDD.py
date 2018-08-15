@@ -1,8 +1,8 @@
+from PyMySQL import DB
 from Album import Album
 from Artista import Artista
 from Cancion import Cancion
 from Genero import Genero
-import os
 
 
 
@@ -27,7 +27,40 @@ menu['17']="Exit"
 
 a = 0
 
-while a != '17':
+while a != '18':
+    print('---------------MENU-------------')
+    print('|             Artista          |')
+    print('|         ---------------      |')
+    print('|1)           Insertar         |')
+    print('|2)             Leer           |')
+    print('|3)           Eliminar         |')
+    print('|4)           Modificar        |')
+    print('|                              |')
+    print('|              Album           |')
+    print('|         ---------------      |')
+    print('|5)           Insertar         |')
+    print('|6)             Leer           |')
+    print('|7)           Eliminar         |')
+    print('|8)           Modificar        |')
+    print('|                              |')
+    print('|             Cancion          |')
+    print('|         ---------------      |')
+    print('|9)           Insertar         |')
+    print('|10)            Leer           |')
+    print('|11)          Eliminar         |')
+    print('|12)          Modificar        |')
+    print('|                              |')
+    print('|              Genero          |')
+    print('|         ---------------      |')
+    print('|13)          Insertar         |')
+    print('|14)         Unir Tablas       |')
+    print('|15)            Leer           |')
+    print('|16)          Eliminar         |')
+    print('|17)          Modificar        |')
+    print('|                              |')
+    print('|18)            EXIT           |')
+    print('--------------------------------')
+
 
     a = input("Porfavor Seleccione Numero:")
 
@@ -79,9 +112,11 @@ while a != '17':
         p.InsertCan(nom_can,id_Art,id_Al)
     elif a == '10':
         p = Cancion('NULL','NULL','NULL','NULL')
-        z = p.LeerCan()
+        id_artis = input("Ingrese ID del Artista que hizo la Canciones: ")
+        id_alb = input("Ingrese ID del Album donde van las Canciones: ")
+        z = p.LeerCan(id_artis,id_alb)
         for a in z:
-            print(a.Nombre_Cancion)
+            print(a.idCancion, " - ",a.Nombre_Cancion, " - ", a.idCancion_Artista, " - ",a.idCancion_Album )
     elif a =='11':
         p = Cancion('NULL','NULL','NULL','NULL')
         id_borrar = input ("Ingrese ID a Borrar: ")
@@ -92,20 +127,24 @@ while a != '17':
         nombre_nuevo = input("Ingrese Cancion a Actualizar: ")
         p.ActualizarCan(nombre_nuevo,id_update)
     elif a =='13':
-        p = Genero('NULL','NULL','NULL')
-        id_alb = input("Ingrese ID del Album: ")
-        nom_gen = input("Ingrese Genero: ")
-        p.InsertGen(nom_gen,id_alb)
-    elif a == '14':
         p = Genero('NULL','NULL')
-        z = p.LeerGen()
+        nom_gen = input("Ingrese Genero: ")
+        p.InsertGen(nom_gen)
+    elif a == '14':
+        id_album = input("Ingrese ID del Album: ")
+        id_gen = input("Ingrese ID del Genero: ")
+        DB.run("insert into Album_has_Genero values ('%s','%s')" % (id_album, id_gen))
+    elif a == '15':
+        p = Genero('NULL','NULL')
+        id_alberto = input("Ingrese ID Album para Leer: ")
+        z = p.LeerGen(id_alberto)
         for a in z:
-            print(a.Nombre_Genero)
-    elif a =='15':
+            print(a.idGenero, " - ",a.Nombre_Genero)
+    elif a =='16':
         p = Genero('NULL','NULL')
         id_borrar = input ("Ingrese ID a Borrar: ")
         p.BorrarGen(id_borrar)
-    elif a =='16':
+    elif a =='17':
         p = Genero('NULL','NULL')
         id_update = input("Ingrese ID a Actualizar: ")
         nombre_nuevo = input("Ingrese Genero a Actualizar: ")

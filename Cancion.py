@@ -16,8 +16,8 @@ class Cancion(object):
 
         DB.run("insert into Cancion values (null,'%s','%s','%s');" % (nc,id_art,id_al))
 
-    def LeerCan(self):
-        cursor = DB.run("select * from Cancion;")
+    def LeerCan(self,id_art,id_al):
+        cursor = DB.run("select * from Cancion where Artista_idArtista = '%s' and Album_idAlbum = '%s';" % (id_art,id_al))
         lista = []
         for b in cursor:
             Can = Cancion(b['idCancion'],b['Nombre_Cancion'],b['Artista_idArtista'],b['Album_idAlbum'])
